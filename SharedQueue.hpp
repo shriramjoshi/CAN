@@ -10,7 +10,9 @@ class SharedQueue
 	public:
 		SharedQueue() = default;
 		~SharedQueue() = default;
-
+		SharedQueue(const SharedQueue&) = delete;
+		SharedQueue& operator==(const SharedQueue&) = delete;
+		
 		T& front()
 		{
 			std::unique_lock<std::mutex> mlock(mutex_);

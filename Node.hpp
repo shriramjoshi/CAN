@@ -22,7 +22,7 @@ class Node : public Member
 		SharedQueue<q_elt>* rcvMsgsQ;
 		
 	public:
-		Node(boost::asio::io_service& io_service, int port); 
+		Node(boost::asio::io_service&, int); 
 		~Node();
 
 		//thread functions
@@ -33,12 +33,12 @@ class Node : public Member
 		void sendLoop(void);
 		
 	private:
-		void getMemberList(std::unique_ptr<char[]>);
-		void insertEntry(std::vector<MemberListEntry>& memberList, Address& address, long heartbeat, long long timestamp);
-		size_t size_of_message(MsgType type);
-        void displayInfo(Address& addr, std::vector<MemberListEntry>& member_list);
+		void getMemberList(std::unique_ptr<char[]>, MsgType);
+		void insertEntry(Address&, long, long long, Zone&);
+		size_t size_of_message(MsgType);
+        void displayInfo(Address&, std::vector<MemberListEntry>&);
         short getRandomReceivers(void);
-        void fillMemberShipList(char* msg);
+        void fillMemberShipList(const char*, MsgType);
 };
 
 #endif  /* NODE_HPP */

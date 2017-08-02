@@ -22,6 +22,8 @@ class Address
         Address(char addrAIn, char addrBIn, char addrCIn, char addrDIn, short portIn);
 		Address(const Address &anotherAddress);
 		Address& operator =(const Address &anotherAddress);
+		Address(Address&&) = default;
+		Address& operator =(Address&&) = default;
 		bool operator ==(const Address &anotherAddress);
         std::string to_string();
         std::string port_to_string();
@@ -48,10 +50,12 @@ class MemberListEntry
         MemberListEntry(Address&, long, long long);
         MemberListEntry(Address&);
         MemberListEntry(Address&, Zone& zone);
-        MemberListEntry(Address&, long, long long, Zone& zone);
+        MemberListEntry(Address&, long, long long, Zone&);
         MemberListEntry(): heartbeat(0), timestamp(0) { }
         MemberListEntry(const MemberListEntry &anotherMLE);
         MemberListEntry& operator =(const MemberListEntry&);
+        MemberListEntry(MemberListEntry&&) = default;
+        MemberListEntry& operator =(MemberListEntry&&) = default;
     
         Address& getAddress();
         long getheartbeat();

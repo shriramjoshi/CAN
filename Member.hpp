@@ -3,6 +3,7 @@
 
 #include "MemberListEntry.hpp"
 #include "Zone.hpp"
+#include "SharedVector.hpp"
 #include <boost/geometry/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <queue>
@@ -34,7 +35,7 @@ class Member
 
         Zone self_zone;
         boost_geometry::point_xy<int> point;
-		std::vector<MemberListEntry> memberList;
+		SharedVector<MemberListEntry> memberList;
     
     public:
         Member();
